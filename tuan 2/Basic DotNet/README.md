@@ -17,6 +17,7 @@ Chương trình nhận vào 2 tham số là `Name` và `Key`, và check bằng m
 
 Đoạn code chính biến đổi đầu vào. <br>
 ![focus](image-6.png)
+<br>
 Ta cần hiểu các input được biến đổi như thế nào. Trước tiên, text từ input box 1 (Name) được convert thành byte array, rồi được đưa vào hàm `Encode(byte[] data, byte[] key)`, với `key` là byte array tạo từ string `"c-sharp"`, kết quả return là 1 byte array.
 
 Hàm này thực ra chỉ là RC4 được tự implement. <br>
