@@ -76,22 +76,23 @@ Sau khi script chạy xong, F8 để nhảy tới OEP đúng.
 
 Áp dụng phương pháp như các challenge trước và tiếp tục unpack.
 
-Delete thunk không hợp lệ.
+Delete thunk không hợp lệ. <br>
 ![thunk](image-6.png)
 
-Dump section.
+Dump section. <br>
 ![dump_section](image-7.png)
 
-Fix dump.
+Fix dump. <br>
 ![fix_dump](image-8.png)
 
-Chạy được thành công.
+Chạy được thành công. <br>
 ![oge](image-9.png)
 
-Một điều em vẫn chưa hiểu, đó là dù unpack xong nhưng DIE vẫn detect được packer -_-.
+Một điều mình vẫn chưa hiểu, đó là dù unpack xong nhưng DIE vẫn detect được packer -_-. <r>
 ![lmao](image-10.png)
 
 Nhưng trong IDA vẫn có thể xem được đầy đủ các function.
 ![lol](image-11.png)
 
+Các string trong chương trình hiển thị đầy đủ.
 ![lul](image-12.png)
