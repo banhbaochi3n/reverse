@@ -27,10 +27,12 @@ Text từ input box 2 (Key) được xử lí qua hàm `FromHex(string hex)`, co
 
 Sau cùng thì sẽ qua 1 đoạn if statement, kiểm tra 2 string có giống nhau không, nếu không thì popup MessageBox với message `Invalid name or key!` <br>
 ![if_check](image-7.png)
+<br>
 Mục đích của chúng ta ở đây là pass đoạn if check và trigger MessageBox `C++++ is C#!`.
 
-Chương trình còn có 1 button `Hint` hiện format key cần nhập.
+Chương trình còn có 1 button `Hint` hiện format key cần nhập. <br>
 ![key_format](image-9.png)
+<br>
 
 Code giải mã key như sau:
 ```python
