@@ -15,16 +15,16 @@ Chương trình nhận vào 2 tham số là `Name` và `Key`, và check bằng m
 ![check_button](image.png)
 <br>
 
-Đoạn code chính biến đổi đầu vào.
+Đoạn code chính biến đổi đầu vào. <br>
 ![focus](image-6.png)
 Ta cần hiểu các input được biến đổi như thế nào. Trước tiên, text từ input box 1 (Name) được convert thành byte array, rồi được đưa vào hàm `Encode(byte[] data, byte[] key)`, với `key` là byte array tạo từ string `"c-sharp"`, kết quả return là 1 byte array.
 
-Hàm này thực ra chỉ là RC4 được tự implement.
+Hàm này thực ra chỉ là RC4 được tự implement. <br>
 ![encode](image-8.png)
 
 Text từ input box 2 (Key) được xử lí qua hàm `FromHex(string hex)`, convert input từ hex sang sang byte array.
 
-Sau cùng thì sẽ qua 1 đoạn if statement, kiểm tra 2 string có giống nhau không, nếu không thì popup MessageBox với message `Invalid name or key!`
+Sau cùng thì sẽ qua 1 đoạn if statement, kiểm tra 2 string có giống nhau không, nếu không thì popup MessageBox với message `Invalid name or key!` <br>
 ![if_check](image-7.png)
 Mục đích của chúng ta ở đây là pass đoạn if check và trigger MessageBox `C++++ is C#!`.
 
