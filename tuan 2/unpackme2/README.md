@@ -48,7 +48,7 @@ Tuy nhiên file vẫn chưa chạy được ngay, giờ cần sửa quyển cho 
 Load file dump vào `CFF Explorer`, sửa `Characteristics` thành `E0000060` và save lại.
 ![execute_perm](image-15.png)
 
-Chương trình đã có thể chạy được.
+Chương trình đã có thể chạy được(không biết vì lí do gì mà khi em test trên VM thì file dump run bth, nhưng khi copy ra máy thật thì run không được :">).
 ![runnable](image-16.png)
 
 ![succ](image-17.png)
