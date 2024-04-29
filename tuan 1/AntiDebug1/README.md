@@ -6,8 +6,9 @@ Mở chương trình trong IDA và debug thoy. <br>
 ![zero](image.png)
 <br>
 
-Click run thì chúng ta gặp error như trên, lý do là do đoạn xử lí này.
+Click run thì chúng ta gặp error như trên, lý do là do đoạn xử lí này.<br>
 ![bruh](image-1.png)
+<br>
 `xor al, al` clear AL register, tiếp đó gọi `SetUnhandledExceptionFilter` sẽ là hàm xử lí exception bằng `lpTopLevelExceptionFilter`. 
 Phần tiếp theo của chương trình:<br>
 ![div](image-3.png)
