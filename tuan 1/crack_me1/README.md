@@ -74,3 +74,66 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 }
 ```
 
+Chương trình cho phép input dài tối đa 300 kí tự. <br>
+![input](image-1.png)
+<br>
+
+Sau đó kiểm tra tiếp, nếu input > 294 kí tự thì mới thao tác tiếp. <br>
+![checc](image-2.png)
+<br>
+
+Sau khi pass check sẽ tới `sub_4A11D0`. <br>
+![lul](image-3.png)
+<br>
+
+Tại đây input lại được check 1 lần nữa qua `sub_4A1080`. <br>
+```c
+char __cdecl sub_4A1080(int a1, int a2, int a3)
+{
+  char v4[4]; // [esp+0h] [ebp-20h] BYREF
+  LPVOID v5; // [esp+4h] [ebp-1Ch]
+  LPVOID v6; // [esp+8h] [ebp-18h]
+  SIZE_T v7; // [esp+Ch] [ebp-14h]
+  SIZE_T v8; // [esp+10h] [ebp-10h]
+  LPVOID lpAddress; // [esp+14h] [ebp-Ch]
+  SIZE_T dwSize; // [esp+18h] [ebp-8h]
+  char v11; // [esp+1Fh] [ebp-1h]
+
+  v8 = 221;
+  v5 = (LPVOID)sub_4A1000((int)&unk_4A4288, 0xDDu, 5);
+  v7 = 278;
+  v6 = (LPVOID)sub_4A1000((int)&unk_4A4170, 0x116u, 6);
+  if ( !v5 || !v6 )
+    return 0;
+  switch ( a1 )
+  {
+    case 1:
+      dwSize = 97;
+      lpAddress = (LPVOID)sub_4A1000((int)&unk_4A4B80, 0x61u, 1);
+      break;
+    case 2:
+      dwSize = 142;
+      lpAddress = (LPVOID)sub_4A1000((int)&unk_4A4AF0, 0x8Eu, 2);
+      break;
+    case 3:
+      dwSize = 1685;
+      lpAddress = (LPVOID)sub_4A1000((int)&unk_4A4458, 0x695u, 3);
+      break;
+    case 4:
+      dwSize = 235;
+      lpAddress = (LPVOID)sub_4A1000((int)&unk_4A4368, 0xEBu, 4);
+      break;
+    default:
+      return 0;
+  }
+  if ( !lpAddress )
+    return 0;
+  v11 = ((int (__cdecl *)(int, int, char *))lpAddress)(a2, a3, v4);
+  VirtualFree(lpAddress, dwSize, 0x8000u);
+  VirtualFree(v5, v8, 0x8000u);
+  VirtualFree(v6, v7, 0x8000u);
+  return v11;
+}
+```
+Function này check 4 case như sau:
+- aa 
