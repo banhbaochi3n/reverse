@@ -237,9 +237,13 @@ Field data là field được chương trình ghi vào, và có 1 quy luật: m�
 ![end](image-8.png)
 <br>
 Giờ thì tính độ dài string:
+
 > 0x306 - 0x36 = 720
+> 
 > 720 / 3 = 240
+>
 > 240 / 8 = 30
+ 
 Vậy là flag dài 30 char.
 
 Solve script như sau:
