@@ -216,6 +216,7 @@ Bên trong đoạn `if` statement có lưu 1 số thông tin khác về file, đ
 - `v16` lưu chiều rộng file bitmap
 - `v27` lưu chiều dài file bitmap
 <br>
+
 ![check](image-4.png)
 <br>
 
