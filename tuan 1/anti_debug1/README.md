@@ -643,3 +643,11 @@ int main()
     return 0;
 }
 ```
+
+Key:
+
+![key](image-20.png)
+
+Flag:
+
+![flag](image-21.png)

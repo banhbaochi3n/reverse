@@ -136,4 +136,4 @@ char __cdecl sub_4A1080(int a1, int a2, int a3)
 }
 ```
 Function này check 4 case như sau:
-- aa 
+- 
