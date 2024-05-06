@@ -1,27 +1,30 @@
 # Basic DotNet
 
-![info](image-1.png)
-Dùng DIE kiểm tra, ta thấy binary này được viết bằng C#, sử dụng library .NET.
+![info](image-1.png) 
 <br>
+Dùng DIE kiểm tra, ta thấy binary này được viết bằng C#, sử dụng library .NET.
 
-Nhưng trước đó, ta chạy thử chương trình trước, giao diện như hình:
+Nhưng trước đó, ta chạy thử chương trình trước, giao diện như hình: <br>
 ![ui](image-4.png)
 <br>
-Chương trình nhận vào 2 tham số là `Name` và `Key`, và check bằng một phương pháp gì đó, nếu check fail thì sẽ báo lỗi.
+
+Chương trình nhận vào 2 tham số là `Name` và `Key`, và check bằng một phương pháp gì đó, nếu check fail thì sẽ báo lỗi. <br>
 ![alt text](image-5.png)
 <br>
 
- Thả vào DNSpy để reverse nào. Trước tiên t xem hàm `button1_Click`, chính là button `Check`.
+ Thả vào DNSpy để reverse nào. Trước tiên t xem hàm `button1_Click`, chính là button `Check`. <br>
 ![check_button](image.png)
 <br>
 
 Đoạn code chính biến đổi đầu vào. <br>
 ![focus](image-6.png)
 <br>
+
 Ta cần hiểu các input được biến đổi như thế nào. Trước tiên, text từ input box 1 (Name) được convert thành byte array, rồi được đưa vào hàm `Encode(byte[] data, byte[] key)`, với `key` là byte array tạo từ string `"c-sharp"`, kết quả return là 1 byte array.
 
 Hàm này thực ra chỉ là RC4 được tự implement. <br>
 ![encode](image-8.png)
+<br>
 
 Text từ input box 2 (Key) được xử lí qua hàm `FromHex(string hex)`, convert input từ hex sang sang byte array.
 
@@ -80,5 +83,6 @@ print("".join([chr(int(i, 16)) for i in encode(b, "c-sharp".encode())]))
 ```
 Flag:
 ![flag](image-10.png)
+<br>
 
 ![correct](image-11.png)

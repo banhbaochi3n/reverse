@@ -216,6 +216,7 @@ Bên trong đoạn `if` statement có lưu 1 số thông tin khác về file, đ
 - `v16` lưu chiều rộng file bitmap
 - `v27` lưu chiều dài file bitmap
 <br>
+
 ![check](image-4.png)
 <br>
 
@@ -236,9 +237,13 @@ Field data là field được chương trình ghi vào, và có 1 quy luật: m�
 ![end](image-8.png)
 <br>
 Giờ thì tính độ dài string:
+
 > 0x306 - 0x36 = 720
+> 
 > 720 / 3 = 240
+>
 > 240 / 8 = 30
+ 
 Vậy là flag dài 30 char.
 
 Solve script như sau:

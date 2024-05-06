@@ -1,27 +1,38 @@
 # Imposter DotNet
 
-Chương trình viết bằng C#, với library .NET
+Chương trình viết bằng C#, với library .NET <br>
 ![info](image.png)
 <br>
 
-Trước khi reverse, ta cùng chạy thử.
+Trước khi reverse, ta cùng chạy thử. <br>
 ![amogus](image-1.png)
-Chương trình có input box duy nhất và 1 button `Vote`, nhập bất kì để xem hành vi của chương trình.
+<br>
+
+Chương trình có input box duy nhất và 1 button `Vote`, nhập bất kì để xem hành vi của chương trình. <br>
 ![input](image-2.png)
+<br>
+
 ![sussy](image-3.png)
+<br>
+
 Input vừa nhập vào là invalidated, nhận được `MessageBox` với thông báo `Defeat`.
+<br>
 
 ![alt text](image-4.png)
+<br>
 Bên trong có rất nhiều hàm, với tên đều bị obfuscate.
 
-Ta bắt đầu từ hàm `button1_Click`.
+Ta bắt đầu từ hàm `button1_Click`. <br>
 ![vote_button](image-5.png)
+<br>
+
 Chương trình bắt đầu thực hiện các thao tác biến đổi input:
 - `array` sẽ lưu kết quả dưới dạng bytes sau khi cipher RC4 của input với key là dạng bytes của string "among-us"
 - `array2` là dạng bytes của chuỗi hex `40-72-b1-25-9e-ff-83-f3-07-c4-e8-d6-8a-a6-0c-e0-ef-9f-a6-3f-e2-fc-0b-81-2a-47-dd-8b-1a-a3-4c-32`
 
-Chương trình khá bruh khi gán `num = 0` và chỉ so sánh byte đầu tiên của 2 array.
+Chương trình khá bruh khi gán `num = 0` và chỉ so sánh byte đầu tiên của 2 array. <br>
 ![bruh](image-8.png)
+<br>
 
 Ta có thể brute force input như sau:
 ```python
@@ -88,19 +99,22 @@ for combination in itertools.product(possible_char, repeat=password_length):
 
 # print(all)
 ```
-Có thể chỉnh độ dài input với `password_length`.
-
+Có thể chỉnh độ dài input với `password_length`. <br>
 ![payload](image-6.png)
+<br>
 
 ![done](image-7.png)
+<br>
 
-Có thể sửa code một chút để lấy danh sách các payload thoả điều kiện.
+Có thể sửa code một chút để lấy danh sách các payload thoả điều kiện. <br>
 ![brute_force](image-9.png)
+<br>
 
-Một cách khác, em tìm được 1 string khá sú trong stack khi debug.
+Một cách khác, em tìm được 1 string khá sú trong stack khi debug. <br>
 ![stack](stack.png)
+<br>
 
-Test thử với chương trình thì đúng.
+Test thử với chương trình thì đúng. <br>
 ![oge](done.png)
 
 **P/s:** Em cũng không chắc lắm là mình đang làm theo đúng ý người ra đề, nhưng mà cách này nó works :D
