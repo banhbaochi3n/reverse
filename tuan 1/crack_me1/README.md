@@ -86,17 +86,19 @@ Sau khi pass check sẽ tới `sub_4A11D0`. <br>
 ![lul](image-3.png)
 
 
-Tại đây input lại được check 1 lần nữa qua `sub_4A1080`. Function này nhận 3 param, param 1 là số thứ tự case, param 2 là vị trí bắt đầu của input để kiểm tra, param 3 là string chương trình đã có sẵn, mỗi param sẽ là 4 byte lấy từ array `&unk_4A4BE8`.
+Tại đây input lại được check 1 lần nữa qua `sub_4A1080`. Function này nhận 3 param, param 1 là số thứ tự case, param 2 là vị trí bắt đầu của input để kiểm tra, param 3 là string chương trình đã có sẵn dành cho việc kiểm tra, mỗi param sẽ là 4 byte lấy từ array `&unk_4A4BE8`.
 
 Array `&unk_4A4BE8`:
 
 ![case](image-5.png)
 
-  |	    Số thứ tự case	   |	Vị trí bắt đầu so sánh |	  String so sánh	    |
-	| 0x01, 0x00, 0x00, 0x00 | 0x00, 0x00, 0x00, 0x00  | 0x74, 0xCC, 0xCC, 0xCC |
+Mỗi case sẽ gồm 12 byte, tức 12 phần tử mảng gộp lại, cấu trúc như sau:
+
+| Số thứ tự case | Vị trí bắt đầu so sánh | String so sánh |
+| ----------------------- | ----------------------- | ----------------------- |
+| 0x01, 0x00, 0x00, 0x00 | 0x00, 0x00, 0x00, 0x00  | 0x74, 0xCC, 0xCC, 0xCC |
 
 Hàm check:
-
 ```c
 char __cdecl sub_4A1080(int a1, int a2, int a3)
 {
