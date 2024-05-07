@@ -1,5 +1,6 @@
 {
     "vscord.status.details.enabled": false,
     "vscord.status.details.text.idle": "Procrastinating ",
-    "vscord.status.state.text.editing": "Crying 😭"
+    "vscord.status.state.text.editing": "Crying 😭",
+    "C_Cpp.errorSquiggles": "disabled"
 }
