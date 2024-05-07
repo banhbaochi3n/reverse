@@ -470,7 +470,7 @@ case 1:
         v26 = v7 + 1;
         v2 = byte_F4329F[v7 + 1] == (char)(v5 ^ v6);
 ```
-Đoạn này sử dụng `NtGlobalFlag`([source](https://anti-debug.checkpoint.com/techniques/debug-flags.html#manual-checks-ntglobalflag)), lưu vào `v24` so sánh với `0x70`, đồng nghĩa với raise cả 3 flag và return 1. `v24` là argument thứ 1 của `sub_F42050`. <br>
+Đoạn này sử dụng `NtGlobalFlag`([source](https://anti-debug.checkpoint.com/techniques/debug-flags.html#manual-checks-ntglobalflag)), lưu vào `v24` so sánh với `0x70`, đồng nghĩa với raise cả 3 flag(0x10, 0x20, 0x40) và return 1. `v24` là argument thứ 1 của `sub_F42050`. <br>
 ![flag](image-4.png)
 <br>
 
@@ -489,15 +489,19 @@ case 1:
  <br>
 Tại đây ta gặp 2 function `resolve_init` và `resolve_finish` lúc đầu.
 
-Set breakpoint sau 2 function kia và debug, ta được: <br>
-![sss](image-14.png)
-<br>
-Kết luận được là chương trình sẽ lấy Heap Flags dựa trên version từ `GetVersion`, trong trường hợp này là `Flags` - `40000062h`([source](https://unprotect.it/technique/heap-flag)). <br>
+Set breakpoint sau 2 function kia và debug, ta được: 
+
+![ver](image-22.png)
+
+
+Kết luận được là chương trình sẽ lấy Heap Flags dựa trên version từ `GetVersion`, trong trường hợp này là `Flags` - `40000062h`([source](https://unprotect.it/technique/heap-flag)).
+
 ![maybe](image-15.png)
-<br>
 
 ![ref](image-16.png)
-<br>
+
+![ssss](image-14.png)
+Tiếp tục debug thì chương trình sẽ chạy tới case bên trái, để được kết quả đúng thì ta chọn case bên phải, cho argument 1 = 1.
 
 ### Case 3
 Tương tự case 2, nhưng sử dụng `ForceFlags`. <br>
@@ -507,24 +511,82 @@ Tương tự case 2, nhưng sử dụng `ForceFlags`. <br>
 ![reff](image-18.png)
 <br>
 
-### Case 4
-Đoạn này thực hiện 1 loạt init resolve và finish. <br>
-![ll](image-19.png)
-<br>
+Luồng chạy case này tương tự case 2, cho argument 1 = 1.
 
-Thực hiện debug chương trình, ta kết luận luồng không phát hiện debug là 0, còn lại là 1.
+### Case 4
+Đoạn này thực hiện 1 loạt init resolve và finish.
+
+![ll](image-19.png)
+
+![debug](image-23.png)
+
+Thực hiện debug chương trình, ta kết luận luồng không phát hiện debug là 0, còn lại là 1, case này sẽ set argument 1 là 0.
 
 ### Case 5
 Debug phát hiện ra sử dụng `CreateToolhelp32Snapshot` để check debugger tồn tại hay không.
+
+![dbg](image-25.png)
+
+Đặt breakpoint tại 2 vị trí return 0 và 1, sau đó F9 để quan sát chương trình trả về.
+
+Vì 1 lí do nào đó mà chúng ta bypass được phần check debugger, và chương trình dừng tại vị trí return 0. 
+
+![bp](image-24.png)
 
 Luồng không có debugger là 0.
 
 ### Case 6
 
+![r](image-27.png)
+
+![block](image-26.png)
+
+Sau khi chạy qua 2 function resolve, phát hiện sử dụng `BlockInput` nếu detect debugger.
+
+```c
+bool __usercall sub_F41AA0@<al>(char a1@<dl>, int a2@<ecx>, int a3)
+{
+  struct _LIST_ENTRY *v5; // eax
+  int (__stdcall *v6)(int); // esi
+  char v7; // bl
+  char v8; // al
+  char v9; // al
+
+  v5 = resolve_init(&unk_2489AAB);
+  v6 = (int (__stdcall *)(int))resolve_finish(v5, 838910877);
+  v7 = v6(1);
+  v8 = v6(1);
+  if ( byte_F455B8 )
+  {
+    if ( v7 == v8 )
+      goto LABEL_3;
+  }
+  else if ( v7 != v8 )
+  {
+LABEL_3:
+    v9 = sub_F42050(a3);
+    byte_F455B8 = 1;
+    goto LABEL_6;
+  }
+  v9 = sub_F42050(a3);
+LABEL_6:
+  if ( *(int *)(a2 + 556) >= 256 )
+    *(_DWORD *)(a2 + 556) = 0;
+  ++*(_DWORD *)(a2 + 556);
+  return byte_F4329F[*(_DWORD *)(a2 + 556)] == (char)(a1 ^ v9);
+}
+```
+
+Case này gán cả v7, v8 == v6 chính là hàm `BlockInput` để check xem chương trình có đang bị debug hay ko, nếu phát hiện debug thì sẽ jmp dến `LABEL_3` vì thế để bypass ta sẽ đổi lại argument ở v9 là 1.
 
 ### Case 7
 
+![ss](image-28.png)
 
+Phần này lại sử dụng `NtQueryInformationProcess`
+
+![ada](image-29.png)
+Debug 1 hồi thì chúng ta return 0, vậy cho argument 1 = 1 là oke.
 
 ### Solve
 ```c

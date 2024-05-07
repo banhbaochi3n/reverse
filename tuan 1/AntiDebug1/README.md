@@ -223,7 +223,7 @@ void __stdcall __spoils<ecx> sub_401757(__int16 *a1, int a2)
 }
 ```
 
-Function này check khoảng cách từ địa chỉ của function `loc_401757` với 782 byte, nếu có khác biệt(khi đặt breakpoint với `int 3` thì sẽ làm tăng khoảng cách, dẫn tới khoảng cách != 782) thì thoát chương trình bằng `ExitProcess`. Ta đơn giản là `nop` toàn bộ đoạn này, không cho thực thi nữa.
+Function này check kích thước từ địa chỉ của function `loc_401757` với 782 byte, nếu có khác biệt(khi đặt breakpoint với `int 3` thì sẽ làm tăng khoảng cách, dẫn tới khoảng cách != 782) thì thoát chương trình bằng `ExitProcess`. Ta đơn giản là `nop` toàn bộ đoạn này, không cho thực thi nữa.
 
 Select đoạn cần nop.
 `Edit` -> `Patch Program` -> `Change byte...`<br>
