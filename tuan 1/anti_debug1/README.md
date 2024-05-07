@@ -586,6 +586,7 @@ Case này gán cả v7, v8 == v6 chính là hàm `BlockInput` để check xem ch
 Phần này lại sử dụng `NtQueryInformationProcess`
 
 ![ada](image-29.png)
+
 Debug 1 hồi thì chúng ta return 0, vậy cho argument 1 = 1 là oke.
 
 ### Solve
